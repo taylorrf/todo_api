@@ -24,10 +24,10 @@ Create an `.env` file and set the variables:
 
 *Creating a user*
 
-`**POST** https://todo-api-warmup.herokuapp.com/user`
-`Header: Content-Type: application/json`
-`Body:  
-{
+`**POST** https://todo-api-warmup.herokuapp.com/user`<br />
+`Header: Content-Type: application/json`<br />
+`Body:`<br />
+`{
   firebase_key: "something"
 }
 `
@@ -35,49 +35,54 @@ Create an `.env` file and set the variables:
 
 **To-do Lists:**
 
-
 *Get all lists*
-`**GET** https://todo-api-warmup.herokuapp.com/lists`
-`Header: user_id: number`
+
+`GET https://todo-api-warmup.herokuapp.com/lists`<br />
+`Header: user_id: number`<br />
 
 
 *Create a list*
 
+`POST https://todo-api-warmup.herokuapp.com/list`<br />
+`Header: Content-Type: application/json`<br />
 
-`**POST** https://todo-api-warmup.herokuapp.com/list`
-Header: Content-Type: application/json
-Body:  
+`Body:
+
 {
   title: "something",
   user_id: number
-}
+}`
 
 
 *Delete a list*
-`**DELETE** https://todo-api-warmup.herokuapp.com/list/:list_id`
 
+`DELETE https://todo-api-warmup.herokuapp.com/list/:list_id`<br />
 
 
 **To-do Items:**
 
 *Get all items from a list*
-`**GET** https://todo-api-warmup.herokuapp.com/items/:list_id`
+
+`GET https://todo-api-warmup.herokuapp.com/items/:list_id`
 
 
 *Create a item*
-`**POST** https://todo-api-warmup.herokuapp.com/item`
-`Header: Content-Type: application/json`
-`Body:  
-{
+
+`POST** https://todo-api-warmup.herokuapp.com/item`<br />
+`Header: Content-Type: application/json`<br />
+`Body:`  
+`{
   description: "something",
   list_id: number,
   user_id: number
 }
-`
+`<br />
 
 *Checking an item as complete*
-`**POST** https://todo-api-warmup.herokuapp.com/item/:item_id/checked`
+
+`**POST** https://todo-api-warmup.herokuapp.com/item/:item_id/checked`<br />
 
 
 *Delete a item*
+
 `**DELETE** https://todo-api-warmup.herokuapp.com/item/:item_id`
