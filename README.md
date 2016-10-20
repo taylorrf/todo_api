@@ -75,7 +75,7 @@ Create an `.env` file and set the variables:
 
 *Checking an item as complete*
 
-`POST https://todo-api-warmup.herokuapp.com/item/:item_id/checked`<br /><br />
+`PUT https://todo-api-warmup.herokuapp.com/item/:item_id/checked`<br /><br />
 
 
 *Delete a item*

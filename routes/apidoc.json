@@ -1,0 +1,7 @@
+{
+  "name": "ToDo API",
+  "version": "0.0.1",
+  "description": "An API built using Node.JS and Express following the specifications of http://jsonapi.org",
+  "title": "ToDo API",
+  "url" : "https://todo-api-warmup.herokuapp.com/"
+}
