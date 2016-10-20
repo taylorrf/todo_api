@@ -24,10 +24,9 @@ Create an `.env` file and set the variables:
 
 *Creating a user*
 
-`**POST** https://todo-api-warmup.herokuapp.com/user`<br />
+`POST https://todo-api-warmup.herokuapp.com/user`<br />
 `Header: Content-Type: application/json`<br />
-`Body:`<br />
-`{
+`Body: {
   firebase_key: "something"
 }
 `<br /><br />
@@ -45,7 +44,6 @@ Create an `.env` file and set the variables:
 
 `POST https://todo-api-warmup.herokuapp.com/list`<br />
 `Header: Content-Type: application/json`<br /><br />
-
 `Body: {
   title: "something",
   user_id: number
@@ -68,8 +66,7 @@ Create an `.env` file and set the variables:
 
 `POST https://todo-api-warmup.herokuapp.com/item`<br />
 `Header: Content-Type: application/json`<br />
-`Body:`  
-`{
+`Body: {
   description: "something",
   list_id: number,
   user_id: number
