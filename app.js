@@ -25,7 +25,7 @@ var apiRoutes = express.Router();
 apiRoutes.use(function(req, res, next) {
 
   // check header for token authentication
-  var user_key = req.headers['firebase-key'];
+  var user_key = req.headers['firebase_key'];
   var models  = require('./models');
 
   models.User.findOne({
@@ -49,13 +49,8 @@ app.use('/api', apiRoutes);
 
 consign().
   include('routes').
-  then('presenters').
+  then('serializers').
   into(app);
-
-//then('models').
-
-//console.log(app.settings);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

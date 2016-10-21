@@ -12,7 +12,6 @@ var items = function(app){
    * @apiSuccess {String} description Description of the Item.
    * @apiSuccess {Boolean} checked  Item was already done? True/False
    * @apiSuccess {Integer} list_id ID of the List related with the Item
-   * @apiSuccess {Integer} user_id ID of the User related with the Item
    * @apiSuccess {Date} createdAt Date when the Item was created
    * @apiSuccess {Date} updatedAt Date of the last Item update
    * @apiSuccessExample {json} Success-Response:
@@ -24,10 +23,8 @@ var items = function(app){
    *      "type":"items",
    *      "attributes":
    *        {
-   *          "id":1,
    *          "description":"to be done",
    *          "list_id":1,
-   *          "user_id":1,
    *          "checked":false,
    *          "createdAt":"2016-10-20T19:36:58.751Z",
    *          "updatedAt":"2016-10-20T19:36:58.751Z"
@@ -44,7 +41,7 @@ var items = function(app){
         list_id: list_id
       }
     }).then(function(item) {
-      res.json(app.presenters.ItemPresenter.render(item));
+      res.json(app.serializers.ItemSerializer.serialize(item));
     });
   });
 
@@ -71,10 +68,8 @@ var items = function(app){
    *      "type":"items",
    *      "attributes":
    *        {
-   *          "id":1,
    *          "description":"new to-do",
    *          "list_id":1,
-   *          "user_id":1,
    *          "checked":false,
    *          "createdAt":"2016-10-20T19:36:58.751Z",
    *          "updatedAt":"2016-10-20T19:36:58.751Z"
@@ -91,7 +86,7 @@ var items = function(app){
       list_id: req.body.list_id,
       user_id: user_id,
     }).then(function(item) {
-      res.json(app.presenters.ItemPresenter.render(item));
+      res.json(app.serializers.ItemSerializer.serialize(item));
     })
   });
 

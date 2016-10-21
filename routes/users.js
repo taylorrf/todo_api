@@ -38,9 +38,8 @@ var users = function(app){
   *  {
   *    "data": {
   *      "id": "4",
-  *      "type": "lists",
+  *      "type": "users",
   *      "attributes": {
-  *        "id": 4,
   *        "firebase_key": "123123123",
   *        "updatedAt": "2016-10-20T22:53:14.430Z",
   *        "createdAt": "2016-10-20T22:53:14.430Z"
@@ -52,7 +51,7 @@ var users = function(app){
     models.User.create({
       firebase_key: req.body.firebase_key
     }).then(function(user) {
-      res.json(app.presenters.UserPresenter.render(user));
+      res.json(app.serializers.UserSerializer.serialize(user));
     })
   });
 

@@ -19,9 +19,7 @@ var lists = function(app){
    *       "id": "1",
    *       "type": "lists",
    *       "attributes": {
-   *         "id": 1,
-   *         "title": "Boring stuffs",
-   *         "user_id": 2,
+   *         "title": "Decluttering",
    *         "createdAt": "2016-10-20T16:40:43.878Z",
    *         "updatedAt": "2016-10-20T16:40:43.878Z"
    *       }
@@ -30,9 +28,7 @@ var lists = function(app){
    *       "id": "2",
    *       "type": "lists",
    *       "attributes": {
-   *         "id": 2,
    *         "title": "Kids school",
-   *         "user_id": 2,
    *         "createdAt": "2016-10-20T16:43:01.269Z",
    *         "updatedAt": "2016-10-20T16:43:01.269Z"
    *       }
@@ -48,7 +44,7 @@ var lists = function(app){
         user_id: user_id
       }
     }).then(function(lists) {
-      res.json(app.presenters.ListPresenter.render(lists));
+      res.json(app.serializers.ListSerializer.serialize(lists));
     });
   });
 
@@ -57,12 +53,17 @@ var lists = function(app){
   * @apiName CreateList
   * @apiGroup Lists
   *
-  * @apiParam {String} description  List title.
+  * @apiParam {String} title  List title.
   *
   * @apiParamExample {json} Request-Example:
   *     {
   *       "title": "to do"
   *     }
+  *
+  * @apiSuccess {Integer} id List ID
+  * @apiSuccess {String} title Title of the List.
+  * @apiSuccess {Date} createdAt Date when the List was created
+  * @apiSuccess {Date} updatedAt Date of the last List update
   *
   * @apiSuccessExample {json} Success-Response:
   * HTTP/1.1 200 OK
@@ -70,14 +71,10 @@ var lists = function(app){
   *   "data":[
   *    {
   *      "id":"1",
-  *      "type":"items",
+  *      "type":"lists",
   *      "attributes":
   *        {
-  *          "id":1,
-  *          "description":"new to-do",
-  *          "list_id":1,
-  *          "user_id":1,
-  *          "checked":false,
+  *          "title":"new awesome list",
   *          "createdAt":"2016-10-20T19:36:58.751Z",
   *          "updatedAt":"2016-10-20T19:36:58.751Z"
   *        }
@@ -91,7 +88,7 @@ var lists = function(app){
       title: req.body.title,
       user_id: user_id
     }).then(function(list) {
-      res.json(app.presenters.ListPresenter.render(list));
+      res.json(app.serializers.ListSerializer.serialize(list));
     })
   });
 
