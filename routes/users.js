@@ -6,13 +6,16 @@ var users = function(app){
   * @apiName Authenticate
   * @apiGroup Authentication
   *
-  * @apiDescription User authentication is required for all requests.
+  * @apiDescription The authentication strategy for all API requests used here is a header with an auth secret key.
   *
-  * To identify an user, you should provide the 'firebase_key' key on all headers.
+  * Our user key is the 'firebase_key' header. Use it to get proprely responses, otherwise you will get back an 403 Forbidden.
   *
-  * Please, always provide an valid 'firebase_key' key to get a successful response.
+  * An 'firebase_key' is storaged on the User (see how create a new user) as the unique key to identify him.
   *
-  * @apiHeader {String} firebase_key Unique Key provided by firebase.google.com service.
+  * We're using the http://firebase.google.com service to authenticate an User using their own credentials from
+  * others services like Google Accounts, so feel free to also use it or modify it as you want.
+  *
+  * @apiHeader {String} firebase_key Unique Key provided by http://firebase.google.com service.
   *
   * @apiHeaderExample {json} Header-Example:
   *     {
