@@ -8,31 +8,31 @@ var lists = function(app){
    *
    * @apiSuccess {Integer} id List ID
    * @apiSuccess {String} title Title of the List.
-   * @apiSuccess {Date} createdAt Date when the List was created
-   * @apiSuccess {Date} updatedAt Date of the last List update
+   * @apiSuccess {Date} created-at Date when the List was created
+   * @apiSuccess {Date} updated-at Date of the last List update
    *
    * @apiSuccessExample {json} Success-Response:
    * HTTP/1.1 200 OK
    * {
    *   "data": [
    *     {
-   *       "id": "1",
    *       "type": "lists",
+   *       "id": "1",
    *       "attributes": {
    *         "id": "1",
    *         "title": "Decluttering",
-   *         "createdAt": "2016-10-20T16:40:43.878Z",
-   *         "updatedAt": "2016-10-20T16:40:43.878Z"
+   *         "created-at": "2016-10-20T16:40:43.878Z",
+   *         "updated-at": "2016-10-20T16:40:43.878Z"
    *       }
    *     },
    *     {
-   *       "id": "2",
    *       "type": "lists",
+   *       "id": "2",
    *       "attributes": {
    *         "id": "2",
    *         "title": "Kids school",
-   *         "createdAt": "2016-10-20T16:43:01.269Z",
-   *         "updatedAt": "2016-10-20T16:43:01.269Z"
+   *         "created-at": "2016-10-20T16:43:01.269Z",
+   *         "updated-at": "2016-10-20T16:43:01.269Z"
    *       }
    *     }
    *   ]
@@ -64,25 +64,22 @@ var lists = function(app){
   *
   * @apiSuccess {Integer} id List ID
   * @apiSuccess {String} title Title of the List.
-  * @apiSuccess {Date} createdAt Date when the List was created
-  * @apiSuccess {Date} updatedAt Date of the last List update
+  * @apiSuccess {Date} created-at Date when the List was created
+  * @apiSuccess {Date} updated-at Date of the last List update
   *
   * @apiSuccessExample {json} Success-Response:
   * HTTP/1.1 200 OK
   * {
-  *   "data":[
-  *    {
-  *      "id":"1",
+  *   "data": {
   *      "type":"lists",
-  *      "attributes":
-  *        {
-  *          "id":"1",
+  *      "id": "1",
+  *      "attributes": {
+  *          "id": 1,
   *          "title":"new awesome list",
-  *          "createdAt":"2016-10-20T19:36:58.751Z",
-  *          "updatedAt":"2016-10-20T19:36:58.751Z"
+  *          "created-at":"2016-10-20T19:36:58.751Z",
+  *          "updated-at":"2016-10-20T19:36:58.751Z"
   *        }
   *    }
-  *    ]
   * }
   */
   app.post("/api/list", function(req, res){

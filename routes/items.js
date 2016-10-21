@@ -11,28 +11,41 @@ var items = function(app){
    *     curl -i http://localhost:3000/api/items/2
    * @apiSuccess {Integer} id Item ID.
    * @apiSuccess {String} description Description of the Item.
-   * @apiSuccess {Integer} list_id ID of the List related with the Item
+   * @apiSuccess {Integer} list-id ID of the List related with the Item
    * @apiSuccess {Boolean} checked  Item was already done? True/False
-   * @apiSuccess {Date} createdAt Date when the Item was created
-   * @apiSuccess {Date} updatedAt Date of the last Item update
+   * @apiSuccess {Date} created-at Date when the Item was created
+   * @apiSuccess {Date} updated-at Date of the last Item update
    * @apiSuccessExample {json} Success-Response:
    * HTTP/1.1 200 OK
    * {
-   *   "data":[
+   *   "data": [
    *    {
-   *      "id":"1",
    *      "type":"items",
+   *      "id":"1",
    *      "attributes":
    *        {
    *          "id":"1",
    *          "description":"to be done",
-   *          "list_id":1,
+   *          "list-id":1,
    *          "checked":false,
-   *          "createdAt":"2016-10-20T19:36:58.751Z",
-   *          "updatedAt":"2016-10-20T19:36:58.751Z"
+   *          "created-at":"2016-10-20T19:36:58.751Z",
+   *          "updated-at":"2016-10-20T19:36:58.751Z"
+   *        }
+   *    },
+   *    {
+   *      "type":"items",
+   *      "id":"2",
+   *      "attributes":
+   *        {
+   *          "id":"2",
+   *          "description":"to be done",
+   *          "list-id":1,
+   *          "checked":false,
+   *          "created-at":"2016-10-20T19:36:58.751Z",
+   *          "updated-at":"2016-10-20T19:36:58.751Z"
    *        }
    *    }
-   *    ]
+   *  ]
    * }
    */
   app.get('/api/items/:id', function(req, res) {
@@ -63,29 +76,26 @@ var items = function(app){
    *
    * @apiSuccess {Integer} id Item ID.
    * @apiSuccess {String} description Description of the Item.
-   * @apiSuccess {Integer} list_id ID of the List related with the Item
+   * @apiSuccess {Integer} list-id ID of the List related with the Item
    * @apiSuccess {Boolean} checked  Item was already done? True/False
-   * @apiSuccess {Date} createdAt Date when the Item was created
-   * @apiSuccess {Date} updatedAt Date of the last Item update
+   * @apiSuccess {Date} created-at Date when the Item was created
+   * @apiSuccess {Date} updated-at Date of the last Item update
    *
    * @apiSuccessExample {json} Success-Response:
    * HTTP/1.1 200 OK
    * {
-   *   "data":[
-   *    {
-   *      "id":"1",
+   *   "data": {
    *      "type":"items",
-   *      "attributes":
-   *        {
-   *          "id":"1",
+   *      "id":"1",
+   *      "attributes": {
+   *          "id": 1,
    *          "description":"new to-do",
-   *          "list_id":1,
+   *          "list-id":1,
    *          "checked":false,
-   *          "createdAt":"2016-10-20T19:36:58.751Z",
-   *          "updatedAt":"2016-10-20T19:36:58.751Z"
+   *          "created-at":"2016-10-20T19:36:58.751Z",
+   *          "updated-at":"2016-10-20T19:36:58.751Z"
    *        }
    *    }
-   *    ]
    * }
    */
   app.post("/api/item", function(req, res){
