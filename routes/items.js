@@ -3,13 +3,13 @@ var models  = require('../models');
 var items = function(app){
 
   /**
-   * @api {get} items/:id Get all Items from a List
+   * @api {get} api/items/:id Get all Items from a List
    * @apiName GetItems
    * @apiGroup Item
    *
    * @apiParam {Number} id ID of a List.
    * @apiExample {curl} Example usage:
-   *     curl -i http://localhost:3000/items/2
+   *     curl -i http://localhost:3000/api/items/2
    * @apiSuccess {String} description Description of the Item.
    * @apiSuccess {Boolean} checked  Item was already done? True/False
    * @apiSuccess {Integer} list_id ID of the List related with the Item
@@ -37,7 +37,7 @@ var items = function(app){
    *    ]
    * }
    */
-  app.get('/items/:id', function(req, res) {
+  app.get('/api/items/:id', function(req, res) {
     var list_id = req.params.id;
     models.Item.findAll({
       attributes:  { exclude: ['UserId'] },
@@ -50,19 +50,17 @@ var items = function(app){
   });
 
   /**
-   * @api {post} item/ Create a new Item
+   * @api {post} api/item/ Create a new Item
    * @apiName CreateItem
    * @apiGroup Item
    *
    * @apiParam {String} description  Item Description.
    * @apiParam {Integer} list_id ID of the List related with the Item
-   * @apiParam {Integer} user_id ID of the User related with the Item
    *
    * @apiParamExample {json} Request-Example:
    *     {
    *       "description": "to do",
-   *       "list_id": "1",
-   *       "user_id": "1"
+   *       "list_id": "1"
    *     }
    *
    * @apiSuccessExample {json} Success-Response:
@@ -86,25 +84,26 @@ var items = function(app){
    *    ]
    * }
    */
-  app.post("/item", function(req, res){
+  app.post("/api/item", function(req, res){
+    var user_id = req.user_id;
     models.Item.create({
       description: req.body.description,
       checked: false,
       list_id: req.body.list_id,
-      user_id: req.body.user_id,
+      user_id: user_id,
     }).then(function(item) {
       res.json(app.presenters.ItemPresenter.render(item));
     })
   });
 
   /**
-   * @api {put} item/:id/checked Check an Item
+   * @api {put} api/item/:id/checked Check an Item
    * @apiName CheckItem
    * @apiGroup Item
    *
    * @apiParam {Number} id ID of an Item.
    */
-  app.put("/item/:id/checked", function(req, res){
+  app.put("/api/item/:id/checked", function(req, res){
     var item_id = req.params.id;
     models.Item.update(
       {
@@ -121,13 +120,13 @@ var items = function(app){
   });
 
   /**
-   * @api {delete} item/:id Delete an Item
+   * @api {delete} api/item/:id Delete an Item
    * @apiName DeleteItem
    * @apiGroup Item
    *
    * @apiParam {Number} id ID of an Item.
    */
-  app.delete("/item/:id", function(req, res){
+  app.delete("/api/item/:id", function(req, res){
     var item_id = req.params.id;
     models.Item.destroy(
       {

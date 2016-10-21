@@ -19,6 +19,43 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+var apiRoutes = express.Router();
+
+// route middleware to verify a token
+apiRoutes.use(function(req, res, next) {
+
+  // check header or url parameters or post parameters for token
+  var user_key = req.headers['firebase-key'];
+  console.log(user_key);
+
+  var models  = require('./models');
+
+  models.User.findOne({
+    where: {
+      firebase_key: user_key
+    }
+  }).then(function(result) {
+    var user = result;
+
+    if (user) {
+        req.user_id = user.id;
+        next();
+    } else {
+      // if there is no user_key
+      // return an error
+      return res.status(403).send({
+          success: false,
+          message: 'No User Key provided.'
+        });
+    }
+  })
+
+});
+
+// apply the routes to our application
+app.use('/api', apiRoutes);
+
+
 consign().
   include('routes').
   then('presenters').

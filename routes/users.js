@@ -2,7 +2,27 @@ var models  = require('../models');
 
 var users = function(app){
   /**
-  * @api {post} user Create a new User
+  * @api {all requests} api/ API Authentication
+  * @apiName Authenticate
+  * @apiGroup Authentication
+  *
+  * @apiDescription User authentication is required for all requests.
+  *
+  * To identify an user, you should provide the 'firebase_key' key on all headers.
+  *
+  * Please, always provide an valid 'firebase_key' key to get a successful response.
+  *
+  * @apiHeader {String} firebase_key Unique Key provided by firebase.google.com service.
+  *
+  * @apiHeaderExample {json} Header-Example:
+  *     {
+  *       "firebase_key": "123123123"
+  *     }
+  *
+  */
+
+  /**
+  * @api {post} api/user Create a new User
   * @apiName CreateUser
   * @apiGroup User
   *
@@ -28,7 +48,7 @@ var users = function(app){
   *    }
   *  }
   */
-  app.post('/user', function(req, res, next) {
+  app.post('/api/user', function(req, res, next) {
     models.User.create({
       firebase_key: req.body.firebase_key
     }).then(function(user) {

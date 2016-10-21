@@ -2,7 +2,7 @@ var models  = require('../models');
 
 var lists = function(app){
   /**
-   * @api {get} lists Get all Lists
+   * @api {get} api/lists Get all Lists
    * @apiName GetLists
    * @apiGroup Lists
    *
@@ -40,8 +40,8 @@ var lists = function(app){
    *   ]
    * }
    */
-  app.get('/lists', function(req, res) {
-    var user_id = req.header('user_id'); // TODO: get user from header firebase_key
+  app.get('/api/lists', function(req, res) {
+    var user_id = req.user_id;
     models.List.findAll({
       attributes:  { exclude: ['UserId'] },
       where: {
@@ -53,12 +53,11 @@ var lists = function(app){
   });
 
   /**
-  * @api {post} list/ Create a new List
+  * @api {post} api/list/ Create a new List
   * @apiName CreateList
   * @apiGroup Lists
   *
   * @apiParam {String} description  List title.
-  * @apiParam {Integer} user_id ID of the User owner of the List.
   *
   * @apiParamExample {json} Request-Example:
   *     {
@@ -87,23 +86,24 @@ var lists = function(app){
   *    ]
   * }
   */
-  app.post("/list", function(req, res){
+  app.post("/api/list", function(req, res){
+    var user_id = req.user_id;
     models.List.create({
       title: req.body.title,
-      user_id: req.body.user_id
+      user_id: user_id
     }).then(function(list) {
       res.json(app.presenters.ListPresenter.render(list));
     })
   });
 
   /**
-   * @api {delete} list/:id Delete a List
+   * @api {delete} api/list/:id Delete a List
    * @apiName DeleteList
    * @apiGroup Lists
    *
    * @apiParam {Number} id ID of the List.
    */
-  app.delete("/list/:id", function(req, res){
+  app.delete("/api/list/:id", function(req, res){
     var list_id = req.params.id;
     models.List.destroy(
       {
