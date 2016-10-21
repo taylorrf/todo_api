@@ -2,7 +2,7 @@ TODO API
 --------
 An API for TODO apps using Node.js, Express and PostgreSQL.
 
-![API page](https://raw.githubusercontent.com/taylorrf/todo_api/master/public/img/ToDo_API.jpg)
+![(https://todo-api-warmup.herokuapp.com/)](https://raw.githubusercontent.com/taylorrf/todo_api/master/public/img/ToDo_API.jpg)
 
 Deployed on Heroku as https://todo-api-warmup.herokuapp.com/
 
