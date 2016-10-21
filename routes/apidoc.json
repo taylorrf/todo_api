@@ -3,5 +3,8 @@
   "version": "0.0.1",
   "description": "An API built using Node.JS and Express following the specifications of http://jsonapi.org",
   "title": "ToDo API",
-  "url" : "https://todo-api-warmup.herokuapp.com/"
+  "url" : "https://todo-api-warmup.herokuapp.com/",
+  "footer": {
+     "title": "All code are open source and are available at https://github.com/taylorrf/todo_api"
+   }
 }
