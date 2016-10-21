@@ -48,10 +48,21 @@ var users = function(app){
   *  }
   */
   app.post('/user', function(req, res, next) {
-    models.User.create({
-      firebase_key: req.body.firebase_key
+    var firebase_key = req.body.firebase_key;
+    models.User.findOne({
+      where: {
+        firebase_key: firebase_key
+      }
     }).then(function(user) {
-      res.json(app.serializers.UserSerializer.serialize(user));
+      if (!user) {
+        models.User.create({
+          firebase_key: firebase_key
+        }).bind(user).then(function(user){
+            res.json(app.serializers.UserSerializer.serialize(user));
+        })
+      }else{
+        res.json(app.serializers.UserSerializer.serialize(user));
+      }
     })
   });
 
