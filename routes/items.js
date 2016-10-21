@@ -111,6 +111,71 @@ var items = function(app){
   });
 
   /**
+   * @api {put} api/item/ Edit the description of an Item
+   * @apiName EditItem
+   * @apiGroup Item
+   *
+   * @apiParam {Integer} id Item ID
+   * @apiParam {String} description Item Description.
+   *
+   * @apiParamExample {json} Request-Example:
+   *     {
+   *       "id": "1"
+   *       "description": "to do",
+   *     }
+   *
+   * @apiSuccess {Integer} id Item ID.
+   * @apiSuccess {String} description Description of the Item.
+   * @apiSuccess {Integer} list-id ID of the List related with the Item
+   * @apiSuccess {Boolean} checked  Item was already done? True/False
+   * @apiSuccess {Date} created-at Date when the Item was created
+   * @apiSuccess {Date} updated-at Date of the last Item update
+   *
+   * @apiSuccessExample {json} Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *   "data": {
+   *      "type":"items",
+   *      "id":"1",
+   *      "attributes": {
+   *          "id": 1,
+   *          "description":"updated to-do",
+   *          "list-id":1,
+   *          "checked":false,
+   *          "created-at":"2016-10-20T19:36:58.751Z",
+   *          "updated-at":"2016-10-20T19:36:58.751Z"
+   *        }
+   *    }
+   * }
+   */
+  app.put("/api/item", function(req, res){
+    models.Item.findOne({
+      attributes:  { exclude: ['UserId'] },
+      where: {
+        id: req.body.id
+      }
+    }).then(function(item) {
+      if (item) {
+        models.Item.update(
+          {
+            description: req.body.description
+          },
+          {
+            where: { id : req.body.id }
+          }
+        );
+        item.description = req.body.description;
+        res.json(app.serializers.ItemSerializer.serialize(item));
+      }else{
+        res.json({
+            success: false,
+            message: 'Item not found.'
+        });
+      }
+    });
+  });
+
+  /**
    * @api {put} api/item/:id/checked Check an Item
    * @apiName CheckItem
    * @apiGroup Item
