@@ -20,19 +20,31 @@ var cpus = os.cpus();
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
  if(cluster.isMaster){
    cpus.forEach(function(){
      cluster.fork();
    });
+
+   cluster.on('listening', function(worker){
+     console.log('running worker ' +  worker.process.pid);
+   });
+
+   cluster.on('exit', function(worker, code, signal){
+      if (signal) {
+        console.log('worker ' + worker.process.pid + ' was killed by signal: ' + signal);
+      } else if (code !== 0) {
+        console.log('worker ' + worker.process.pid + ' exited with error code: ' + code);
+      } else {
+        console.log('worker ' + worker.process.pid + ' success!');
+      }
+      cluster.fork();
+   });
+
  }else{
-   var server = http.createServer(app);
    /**
-    * Listen on provided port, on all network interfaces.
+    * Create HTTP server.
     */
+   var server = http.createServer(app);
    server.listen(port);
    server.on('error', onError);
    server.on('listening', onListening);
@@ -41,7 +53,6 @@ app.set('port', port);
 /**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
