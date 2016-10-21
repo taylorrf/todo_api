@@ -51,6 +51,7 @@ var users = function(app){
   *      "id": "4",
   *      "type": "users",
   *      "attributes": {
+  *        "id": "4",
   *        "firebase_key": "123123123",
   *        "updatedAt": "2016-10-20T22:53:14.430Z",
   *        "createdAt": "2016-10-20T22:53:14.430Z"

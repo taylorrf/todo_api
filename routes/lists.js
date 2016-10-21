@@ -19,6 +19,7 @@ var lists = function(app){
    *       "id": "1",
    *       "type": "lists",
    *       "attributes": {
+   *         "id": "1",
    *         "title": "Decluttering",
    *         "createdAt": "2016-10-20T16:40:43.878Z",
    *         "updatedAt": "2016-10-20T16:40:43.878Z"
@@ -28,6 +29,7 @@ var lists = function(app){
    *       "id": "2",
    *       "type": "lists",
    *       "attributes": {
+   *         "id": "2",
    *         "title": "Kids school",
    *         "createdAt": "2016-10-20T16:43:01.269Z",
    *         "updatedAt": "2016-10-20T16:43:01.269Z"
@@ -74,6 +76,7 @@ var lists = function(app){
   *      "type":"lists",
   *      "attributes":
   *        {
+  *          "id":"1",
   *          "title":"new awesome list",
   *          "createdAt":"2016-10-20T19:36:58.751Z",
   *          "updatedAt":"2016-10-20T19:36:58.751Z"
