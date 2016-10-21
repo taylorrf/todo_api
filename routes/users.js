@@ -22,7 +22,7 @@ var users = function(app){
   */
 
   /**
-  * @api {post} api/user Create a new User
+  * @api {post} user Create a new User
   * @apiName CreateUser
   * @apiGroup User
   *
@@ -48,7 +48,7 @@ var users = function(app){
   *    }
   *  }
   */
-  app.post('/api/user', function(req, res, next) {
+  app.post('/user', function(req, res, next) {
     models.User.create({
       firebase_key: req.body.firebase_key
     }).then(function(user) {

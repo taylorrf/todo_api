@@ -1,7 +1,6 @@
 var models  = require('../models');
 
 var items = function(app){
-
   /**
    * @api {get} api/items/:id Get all Items from a List
    * @apiName GetItems
@@ -111,12 +110,12 @@ var items = function(app){
       },
       {
         where: { id : item_id }
-      })
-      .then(function (result) {
+      }
+    ).then(function (result) {
         res.json(result);
       }, function(rejectedPromiseError){
         res.send(rejectedPromiseError);
-      });
+    });
   });
 
   /**

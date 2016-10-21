@@ -24,37 +24,28 @@ var apiRoutes = express.Router();
 // route middleware to verify a token
 apiRoutes.use(function(req, res, next) {
 
-  // check header or url parameters or post parameters for token
+  // check header for token authentication
   var user_key = req.headers['firebase-key'];
-  console.log(user_key);
-
   var models  = require('./models');
 
   models.User.findOne({
     where: {
       firebase_key: user_key
     }
-  }).then(function(result) {
-    var user = result;
-
+  }).then(function(user) {
     if (user) {
         req.user_id = user.id;
         next();
     } else {
-      // if there is no user_key
-      // return an error
       return res.status(403).send({
           success: false,
           message: 'No User Key provided.'
         });
     }
   })
-
 });
 
-// apply the routes to our application
 app.use('/api', apiRoutes);
-
 
 consign().
   include('routes').
