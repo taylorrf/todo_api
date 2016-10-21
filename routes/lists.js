@@ -61,8 +61,7 @@ var lists = function(app){
   *
   * @apiParamExample {json} Request-Example:
   *     {
-  *       "title": "to do",
-  *       "user_id": "1"
+  *       "title": "to do"
   *     }
   *
   * @apiSuccessExample {json} Success-Response:
