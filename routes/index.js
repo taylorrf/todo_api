@@ -1,6 +1,6 @@
 var index = function(app){
   app.get('/', function(req, res, next) {
-    res.sendFile('views/index.html');
+    res.sendfile('views/index.html');
   });
 }
 
